@@ -54,6 +54,6 @@ Open the Chrome Dragon Game folder and run automation_tests to start unit and in
 
 Manual tests are described in Manual test.pdf
 
-####Created tags: 
+#### Created tags: 
 	1) cstd-yatskivoleh-2122_1.0_5121517
 
