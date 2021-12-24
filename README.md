@@ -51,6 +51,7 @@ There are two ways to start a project:
 
 ## How to run tests
 Open the Chrome Dragon Game folder and run automation_tests to start unit and integration tests
+
 Manual tests are described in Manual test.pdf
 
 
