@@ -38,7 +38,4 @@ jobs:
        with:
          name: artifacts
          path: |
-           ${{ env.ROOT_FOLDER }}/main.py
-           ${{ env.ROOT_FOLDER }}/unit_tests.py
-           ${{ env.ROOT_FOLDER }}/integration_tests.py
            ${{ env.ROOT_FOLDER }}/automation_tests.bat
