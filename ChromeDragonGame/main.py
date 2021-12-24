@@ -5,6 +5,7 @@ import threading
 import pygame
 import random
 import serial
+import json
 from pygame import *
 from tkinter import *
 from threading import Thread
@@ -305,10 +306,14 @@ def introscreen():
     temp_dino.isBlinking = True
     gameStart = False
     global mode
+    global high_score
     temp_ground,temp_ground_rect = load_sprite_sheet('ground.png',15,1,-1,-1,-1)
     temp_ground_rect.left = width/20
     temp_ground_rect.bottom = height
 
+    with open("game_data.json", "r") as read_file:
+        high_score = json.load(read_file)
+    
     logo,logo_rect = load_image('logo.png',300,140,-1)
     logo_rect.centerx = width*0.6
     logo_rect.centery = height*0.4
@@ -506,6 +511,8 @@ def gameplay():
                             gameOver = False
                             gameplay()
             highsc.update(high_score)
+            with open("game_data.json", "w") as write_file:
+                json.dump(high_score, write_file)
             if pygame.display.get_surface() != None:
                 disp_gameOver_msg(retbutton_image,gameover_image)
                 if high_score != 0:
