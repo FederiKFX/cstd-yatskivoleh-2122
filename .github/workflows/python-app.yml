@@ -13,7 +13,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-        ROOT_FOLDER: "ChromeDragonGame"
+        ROOT_FOLDER: "Chrome Dragon Game"
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.10
