@@ -56,7 +56,7 @@ Manual tests are described in Manual test.pdf
 
 ### List of changes
 Ver 1.1:
-	Added AL vs AL mode
+	+ Added AL vs AL mode
 
 #### Created tags: 
 	1) cstd-yatskivoleh-2122_1.0_5121517
