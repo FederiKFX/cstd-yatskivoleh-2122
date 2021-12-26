@@ -23,7 +23,7 @@ Data driven format: JSON
 	* Save
 	* Load
 	
-Ver. 1.0
+Ver. 1.1
 
 ## How to build project
 Project contains 4 solution
@@ -54,6 +54,11 @@ Open the Chrome Dragon Game folder and run automation_tests to start unit and in
 
 Manual tests are described in Manual test.pdf
 
+### List of changes
+Ver 1.1:
+	+ Added AL vs AL mode
+
 #### Created tags: 
 	1) cstd-yatskivoleh-2122_1.0_5121517
+	2) cstd-yatskivoleh-2122_1.1_5121517
 

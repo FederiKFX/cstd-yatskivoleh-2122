@@ -316,7 +316,7 @@ def introscreen():
     
     logo,logo_rect = load_image('logo.png',300,140,-1)
     logo_rect.centerx = width*0.6
-    logo_rect.centery = height*0.4
+    logo_rect.centery = height*0.5
     while not gameStart:
         if pygame.display.get_surface() == None:
             print("Couldn't load display surface")
@@ -326,11 +326,13 @@ def introscreen():
                 if event.type == pygame.QUIT:
                     return True
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_1 or event.key == pygame.K_2:
+                    if event.key == pygame.K_1 or event.key == pygame.K_2 or event.key == pygame.K_3:
                         if event.key == pygame.K_1:
                             mode = 1
                         if event.key == pygame.K_2:
                             mode = 0
+                        if event.key == pygame.K_3:
+                            mode = 2
                         temp_dino.isJumping = True
                         temp_dino.isBlinking = False
                         temp_dino.movement[1] = -1*temp_dino.jumpSpeed
@@ -401,8 +403,8 @@ def gameplay():
                     if event.type == pygame.QUIT:
                         gameQuit = True
                         gameOver = True
-
-                    if event.type == pygame.KEYDOWN:
+         
+                    if event.type == pygame.KEYDOWN and mode != 2:
                         if event.key == pygame.K_SPACE:
                             if playerDino.rect.bottom == int(0.98*height):
                                 playerDino.isJumping = True
@@ -417,6 +419,16 @@ def gameplay():
                     if event.type == pygame.KEYUP:
                         if event.key == pygame.K_DOWN:
                             playerDino.isDucking = False
+                            
+            if mode == 2:
+                for c in cacti:
+                    if playerDino.rect.x > c.rect.x - 100 and playerDino.rect.x + 50 < c.rect.x:
+                        if playerDino.rect.bottom == int(0.98*height):
+                            playerDino.isJumping = True
+                            if pygame.mixer.get_init() != None:
+                                jump_sound.play()
+                            playerDino.movement[1] = -1*playerDino.jumpSpeed
+                                    
             for c in cacti:
                 c.movement[0] = -1*gamespeed
                 if pygame.sprite.collide_mask(playerDino,c):
@@ -431,7 +443,7 @@ def gameplay():
                     if pygame.mixer.get_init() != None:
                         die_sound.play()
 
-            if (mode == 1 and len(cacti) < 2) or cact == 1:
+            if (mode != 0 and len(cacti) < 2) or cact == 1:
                 if len(cacti) == 0 or cact == 1:
                     last_obstacle.empty()
                     last_obstacle.add(Cactus(gamespeed,40,40))
