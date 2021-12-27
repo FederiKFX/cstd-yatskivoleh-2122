@@ -57,8 +57,13 @@ Manual tests are described in Manual test.pdf
 ### List of changes
 Ver 1.1:
 	+ Added AL vs AL mode
+	
+
+Ver 1.2:
+	+ Added connection with DataBase
 
 #### Created tags: 
 	1) cstd-yatskivoleh-2122_1.0_5121517
 	2) cstd-yatskivoleh-2122_1.1_5121517
+	3) cstd-yatskivoleh-2122_1.2_5221521
 

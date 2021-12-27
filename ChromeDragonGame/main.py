@@ -6,6 +6,7 @@ import pygame
 import random
 import serial
 import json
+import pyodbc
 from pygame import *
 from tkinter import *
 from threading import Thread
@@ -27,6 +28,8 @@ gameQuit = False
 cact = 0
 pter = 0
 
+cursor = 0
+cnxn = 0
 screen = pygame.display.set_mode(scr_size)
 clock = pygame.time.Clock()
 pygame.display.set_caption("Dino Run ")
@@ -521,6 +524,12 @@ def gameplay():
 
                         if event.key == pygame.K_RETURN or event.key == pygame.K_SPACE:
                             gameOver = False
+                            global cursor
+                            global cnxn
+                            print("Imput player name")
+                            name = input()
+                            cursor.execute("insert into Score(PlayerName, Score) values ('" + name + "', " + str(playerDino.score) + ")")
+                            cnxn.commit()
                             gameplay()
             highsc.update(high_score)
             with open("game_data.json", "w") as write_file:
@@ -533,10 +542,6 @@ def gameplay():
                 pygame.display.update()
             clock.tick(FPS)
     gameQuit = True
-
-
-def callback():
-    print(e.get()) # This is the text you may want to use later
 
 def COMPortWork():
     global COMPortName
@@ -557,6 +562,14 @@ def COMPortWork():
 def GameWork():
     isGameQuit = introscreen()
     global gameQuit
+    global cursor
+    global cnxn
+    cnxn = pyodbc.connect("Driver={SQL Server Native Client 11.0};"
+                      "Server=INSPIRON;"
+                      "Database=ChromeDragonDB;"
+                      "Trusted_Connection=yes;")
+    cursor = cnxn.cursor()
+    
     if not isGameQuit:
         gameplay()
     gameQuit = True
